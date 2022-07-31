@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contents &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="icon" type="image/png" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true">
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -45,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
@@ -58,7 +60,6 @@
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/elementwise.html">Elementwise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functional/ivy/image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/layers.html">Layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/linear_algebra.html">Linear algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/losses.html">Losses</a></li>
@@ -73,16 +74,21 @@
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/statistical.html">Statistical</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functional/ivy/utility.html">Utility</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
+<p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_classes/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_classes/array.html">Array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stateful/activations.html">Activations</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -122,7 +128,7 @@
            <div itemprop="articleBody">
              
   <embed>
-  <a href="https://github.com/unifyai/ivy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa000.png"></a>
+  <a href="https://github.com/unifyai/ivy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 </embed><a class="reference internal image-reference" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/repos/ivy/logo.png?raw=true"><img alt="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/repos/ivy/logo.png?raw=true" src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/repos/ivy/logo.png?raw=true" style="width: 100%;" /></a>
 <br/>
 <div align="center">
@@ -189,18 +195,31 @@
 </section>
 <section id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h1>
-<p>Ivy is an ML framework which currently supports JAX, TensorFlow, PyTorch, MXNet and Numpy. We’re very excited for you to try it out!</p>
-<p>Next on our road-map is to support automatic code conversions between any frameworks 🔄, and add instant multi-framework support for all open-source libraries with only a few lines of code changed! Read on to learn more 😊</p>
-<p>The docs are split into a number of sub-pages explaining different aspects of why we created Ivy, how to use it, what we’ve got planned on our road-map, and how to contribute! Click on the sub-headings to check out these pages!</p>
-<p>We use 🚧 to indicate that the feature being discussed is in development. We use ✅ to indicate that it is already implemented!</p>
-<p>Check out the <a class="reference external" href="https://lets-unify.ai/ivy">docs</a> for more info, and check out our Google <a class="reference external" href="https://drive.google.com/drive/folders/16Oeu25GrQsEJh8w2B0kSrD93w4cWjJAM?usp=sharing">Colabs</a> for some interactive demos!</p>
+<p>Ivy is an ML framework that currently supports JAX, TensorFlow, PyTorch, MXNet, and Numpy.
+We’re very excited for you to try it out!</p>
+<p>Next on our roadmap is to support automatic code conversions between all frameworks 🔄,
+and add instant multi-framework support for all open-source libraries with only a few lines of code changed!
+Read on to learn more 😊</p>
+<p>The docs are split into a number of sub-pages explaining different aspects of why we created Ivy,
+how to use it, what we’ve got planned on our roadmap, and how to contribute!
+Click on the sub-headings below to check out these pages!</p>
+<p>We use 🚧 to indicate that the feature being discussed is in development.
+We use ✅ to indicate that it is already implemented!</p>
+<p>Check out the <a class="reference external" href="https://lets-unify.ai/ivy">docs</a> for more info,
+and check out our Google <a class="reference external" href="https://drive.google.com/drive/folders/16Oeu25GrQsEJh8w2B0kSrD93w4cWjJAM?usp=sharing">Colabs</a> for some interactive demos!</p>
 <p>🚨 Ivy is still at a relatively early stage of development.
-Expect breaking changes and sharp edges until we release version 2.0 in the next few weeks!</p>
+Expect breaking changes and sharp edges until we release version 1.2.0 in the next few weeks!</p>
+<p>If you would like to contribute,
+please check out our <a class="reference external" href="https://lets-unify.ai/ivy/contributing.html">contributor guide</a>,
+and take a look at the <a class="reference external" href="https://lets-unify.ai/ivy/contributing/4_open_tasks.html">open tasks</a> if you’d like to dive straight in! 🧑‍💻</p>
+<p>If you’d like to ask us questions, feel free to join in on any of our weekly “Ask us Anything!” online sessions!
+To see when the next one will be, check out the Events tab at the top left our
+<a class="reference external" href="https://discord.gg/G4aR9Q7DTN">discord server</a> 🙂</p>
 </section>
 <section id="quick-start">
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading"></a></h1>
 <p>Ivy can be installed like so: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ivy-core</span></code>
-You can immediately use Ivy to train a neural network, using your favourite framework in the background, like so:</p>
+You can immediately use Ivy to train a neural network, using your favorite framework in the background, like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ivy</span>
 
 <span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -213,7 +232,7 @@ You can immediately use Ivy to train a neural network, using your favourite fram
         <span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear0</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="n">ivy</span><span class="o">.</span><span class="n">set_framework</span><span class="p">(</span><span class="s1">&#39;torch&#39;</span><span class="p">)</span>  <span class="c1"># change to any framework!</span>
+<span class="n">ivy</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;torch&#39;</span><span class="p">)</span>  <span class="c1"># change to any backend!</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
 <span class="n">x_in</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
@@ -221,7 +240,7 @@ You can immediately use Ivy to train a neural network, using your favourite fram
 
 <span class="k">def</span> <span class="nf">loss_fn</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">((</span><span class="n">out</span> <span class="o">-</span> <span class="n">target</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">out</span> <span class="o">-</span> <span class="n">target</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">loss</span><span class="p">,</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">execute_with_gradients</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
@@ -232,7 +251,7 @@ You can immediately use Ivy to train a neural network, using your favourite fram
 </pre></div>
 </div>
 <p>This example uses PyTorch as a backend framework,
-but the backend can easily be changed to your favourite framework, such as TensorFlow, JAX or MXNet.</p>
+but the backend can easily be changed to your favorite frameworks, such as TensorFlow, JAX, or MXNet.</p>
 <p><strong>Framework Agnostic Functions</strong></p>
 <p>In the example below we show how Ivy’s concatenation function is compatible with tensors from different frameworks.
 This is the same for ALL Ivy functions. They can accept tensors from any framework and return the correct result.</p>
@@ -313,7 +332,7 @@ You should then see output like the following:</p>
 <div class="line">1. Serve as a transpiler between frameworks 🚧</div>
 <div class="line">2. Serve as a new ML framework with multi-framework support ✅</div>
 <div class="line"><br /></div>
-<div class="line">The Ivy codebase can then be split into three categories, and can be further split into 8 distinct submodules, each of which fall into one of these three categories as follows:</div>
+<div class="line">The Ivy codebase can then be split into three categories, and can be further split into 8 distinct submodules, each of which falls into one of these three categories as follows:</div>
 </div>
 <a class="reference internal image-reference" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/submodule_dependency_graph.png?raw=true"><img alt="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/submodule_dependency_graph.png?raw=true" class="align-center" src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/submodule_dependency_graph.png?raw=true" style="width: 100%;" /></a>
 <div class="line-block">
@@ -336,7 +355,7 @@ You should then see output like the following:</p>
 <h1>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading"></a></h1>
 <div class="line-block">
 <div class="line">(a) <a class="reference external" href="https://lets-unify.ai/ivy/extensions/applied_libraries.html">Applied Libraries</a> ✅</div>
-<div class="line">Ivy libraries in mechanics, vision, robotics, memory and other areas</div>
+<div class="line">Ivy libraries in mechanics, vision, robotics, memory, and other areas</div>
 <div class="line"><br /></div>
 <div class="line">(b) <strong>Builder [page coming soon!]</strong> ✅</div>
 <div class="line"><code class="code docutils literal notranslate"><span class="pre">ivy.Trainer</span></code>, <code class="code docutils literal notranslate"><span class="pre">ivy.Dataset</span></code>, <code class="code docutils literal notranslate"><span class="pre">ivy.Dataloader</span></code> and other helpful classes and functions for creating training workflows in only a few lines of code</div>
@@ -374,6 +393,8 @@ Find out more in our <a class="reference external" href="https://lets-unify.ai/i
   <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2021</span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
