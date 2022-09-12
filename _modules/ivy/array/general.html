@@ -285,7 +285,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">has_nans</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_infs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ArrayWithGeneral.unstack"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.unstack">[docs]</a>    <span class="k">def</span> <span class="nf">unstack</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<div class="viewcode-block" id="ArrayWithGeneral.unstack"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.unstack">[docs]</a>    <span class="k">def</span> <span class="nf">unstack</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;ivy.Array instance method variant of ivy.unstack. This method simply</span>
 <span class="sd">        wraps the function, and so the docstring for ivy.unstack also applies to</span>
 <span class="sd">        this method with minimal changes.</span>
@@ -318,7 +318,7 @@
 <span class="sd">                [3]]), ivy.array([[2],</span>
 <span class="sd">                [4]])]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ArrayWithGeneral.cumsum"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.cumsum">[docs]</a>    <span class="k">def</span> <span class="nf">cumsum</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
@@ -745,6 +745,33 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="ArrayWithGeneral.supports_inplace_updates"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.supports_inplace_updates">[docs]</a>    <span class="k">def</span> <span class="nf">supports_inplace_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Array instance method variant of ivy.supports_inplace_updates. This method</span>
+<span class="sd">        simply wraps the function, and so the docstring for ivy.supports_inplace also</span>
+<span class="sd">        applies to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            The input array whose elements&#39; data type is to be checked.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            Bool value depends on whether the currently active backend</span>
+<span class="sd">            framework supports in-place operations with argument&#39;s data type.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With `ivy.Array` input and backend set as &quot;tensorflow&quot;:</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([1., 4.2, 2.2])</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.supports_inplace()</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
+<span class="sd">        False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">supports_inplace_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ArrayWithGeneral.inplace_decrement"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.inplace_decrement">[docs]</a>    <span class="k">def</span> <span class="nf">inplace_decrement</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -842,7 +869,7 @@
 <span class="sd">            An array with the vector norm downscaled to the max norm if needed.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">clip_vector_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_norm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">clip_vector_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_norm</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ArrayWithGeneral.array_equal"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.array_equal">[docs]</a>    <span class="k">def</span> <span class="nf">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -947,34 +974,6 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_scalar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="ArrayWithGeneral.floormod"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.floormod">[docs]</a>    <span class="k">def</span> <span class="nf">floormod</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
-        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Array instance method variant of ivy.floormod. This method simply wraps the</span>
-<span class="sd">        function, and so the docstring for ivy.floormod also applies to this method</span>
-<span class="sd">        with minimal changes.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        self</span>
-<span class="sd">            input array</span>
-<span class="sd">        x</span>
-<span class="sd">            input array for the denominator</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output array, for writing the result to. It must have a shape that</span>
-<span class="sd">            the inputs broadcast to.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ret</span>
-<span class="sd">            An array of the same shape and type as x, with the elements floor modded.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">floormod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ArrayWithGeneral.fourier_encode"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.fourier_encode">[docs]</a>    <span class="k">def</span> <span class="nf">fourier_encode</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
@@ -1119,25 +1118,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">stable_pow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">,</span> <span class="n">min_base</span><span class="o">=</span><span class="n">min_base</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ArrayWithGeneral.supports_inplace"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.supports_inplace">[docs]</a>    <span class="k">def</span> <span class="nf">supports_inplace</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Array instance method variant of ivy.supports_inplace. This method simply</span>
-<span class="sd">        wraps the function, and so the docstring for ivy.supports_inplace also applies</span>
-<span class="sd">        to this method with minimal changes.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        self</span>
-<span class="sd">            input array</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ret</span>
-<span class="sd">            Boolean, whether or not inplace operations are supported for x.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">supports_inplace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="ArrayWithGeneral.inplace_update"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.inplace_update">[docs]</a>    <span class="k">def</span> <span class="nf">inplace_update</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
         <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1171,21 +1151,35 @@
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Array instance method variant of ivy.inplace_increment. This method simply</span>
-<span class="sd">        wraps the function, and so the docstring for ivy.inplace_increment also applies</span>
-<span class="sd">        to this method with minimal changes.</span>
+<span class="sd">        ivy.Array instance method variant of ivy.inplace_increment. This</span>
+<span class="sd">        method wraps the function, and so the docstring for</span>
+<span class="sd">        ivy.inplace_increment also applies to this method with minimal changes.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        self</span>
-<span class="sd">            input array to increment</span>
+<span class="sd">            The input array to be incremented by the defined value.</span>
 <span class="sd">        val</span>
-<span class="sd">            The array to increment the variable with.</span>
+<span class="sd">            The value of increment.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            The array following the in-place increment.</span>
+<span class="sd">            The array following an in-place increment.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With :code:`ivy.Array` instance methods:</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([5.7, 4.3, 2.5, 1.9])</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(1)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        ivy.array([6.7, 5.3, 3.5, 2.9])</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.asarray([4., 5., 6.])</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(2.5)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        ivy.array([6.5, 7.5, 8.5])</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
@@ -1193,8 +1187,9 @@
 <div class="viewcode-block" id="ArrayWithGeneral.clip_matrix_norm"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.clip_matrix_norm">[docs]</a>    <span class="k">def</span> <span class="nf">clip_matrix_norm</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
         <span class="n">max_norm</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
+        <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
         <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

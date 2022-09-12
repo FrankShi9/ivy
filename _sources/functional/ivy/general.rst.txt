@@ -33,7 +33,6 @@ General
    general/to_list.rst
    general/clip_vector_norm.rst
    general/clip_matrix_norm.rst
-   general/floormod.rst
    general/unstack.rst
    general/fourier_encode.rst
    general/value_is_nan.rst
@@ -61,12 +60,13 @@ General
    general/print_all_arrays_in_memory.rst
    general/set_queue_timeout.rst
    general/get_queue_timeout.rst
+   general/unset_queue_timeout.rst
    general/get_tmp_dir.rst
    general/set_tmp_dir.rst
    general/container_types.rst
    general/inplace_arrays_supported.rst
    general/inplace_variables_supported.rst
-   general/supports_inplace.rst
+   general/supports_inplace_updates.rst
    general/assert_supports_inplace.rst
    general/inplace_update.rst
    general/inplace_decrement.rst
@@ -88,6 +88,7 @@ General
    general/arg_info.rst
    general/function_supported_devices_and_dtypes.rst
    general/function_unsupported_devices_and_dtypes.rst
+   general/vmap.rst
 
 .. _`discord`: https://discord.gg/ZVQdvbzNQJ 
 .. _`General discussion`: https://github.com/unifyai/ivy/discussions/2191
